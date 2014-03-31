@@ -1,0 +1,12 @@
+---
+# Simple GET operation
+- name: Transfer war file from S3
+  s3: >
+    bucket={{ bucket }}
+    object={{ war }}.war
+    dest=/var/lib/tomcat7/webapps/ROOT.war
+    mode=get
+    aws_access_key={{ aws_access_key }}
+    aws_secret_key={{ aws_secret_key }}
+  notify: restart tomcat7
+  sudo: True
